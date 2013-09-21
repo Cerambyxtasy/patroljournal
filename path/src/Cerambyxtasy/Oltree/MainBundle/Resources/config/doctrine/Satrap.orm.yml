@@ -1,0 +1,32 @@
+Cerambyxtasy\Oltree\MainBundle\Entity\Satrap:
+  type: entity
+  table: satrap
+  id:
+     id:
+       type: integer
+       generator: {strategy: AUTO}
+  fields:
+    name:
+       type: string
+       length: 255                
+    details:
+       type: text
+       nullable: true
+    json_configuration:
+       nullable: true
+       type: text
+  manyToOne:
+    patroller:
+      targetEntity: User
+      inversedBy: satraps
+  oneToMany:
+     journals:
+       targetEntity: Journal
+       mappedBy: satrap
+       cascade: ["persist"]
+  oneToOne:
+     map:
+       targetEntity: Map
+       mappedBy: satrap
+       cascade: ["persist"]
+      

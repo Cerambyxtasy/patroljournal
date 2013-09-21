@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>JournalEntry list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Hexagon_json_infos</th>
+                <th>Terrain</th>
+                <th>Exploration_level</th>
+                <th>Patrollers</th>
+                <th>Events</th>
+                <th>Session_date</th>
+                <th>Game_date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('journalentry_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.hexagonjsoninfos }}</td>
+                <td>{{ entity.terrain }}</td>
+                <td>{{ entity.explorationlevel }}</td>
+                <td>{{ entity.patrollers }}</td>
+                <td>{{ entity.events }}</td>
+                <td>{% if entity.sessiondate %}{{ entity.sessiondate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.gamedate %}{{ entity.gamedate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('journalentry_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('journalentry_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('journalentry_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

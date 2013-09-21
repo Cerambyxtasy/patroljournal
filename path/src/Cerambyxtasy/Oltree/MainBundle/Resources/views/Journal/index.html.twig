@@ -1,0 +1,60 @@
+{% extends 'CerambyxtasyOltreeMainBundle::layout.html.twig' %}
+
+
+{% block body %}
+{%  include 'CerambyxtasyOltreeMainBundle:Journal:nav.html.twig' %}   
+<div id="JournalEntry" class="row">
+    {{ form_start(formJournal) }}
+        <label for="hexagon_id">Hexagone</label>
+        <input type="text" name="hexagonId" id="hexagonId"/>
+        <input type="hidden" name="journalEntryId" id="journalEntryId"/>
+        {{ form_errors(formJournal) }}
+
+    {{ form_end(formJournal) }}        
+    </div>
+<div id="main" class="row">
+    <section class="mapSection">
+        <article id="map" class="mapSection small-10 column">
+            <canvas id="hexaGrid">      
+            </canvas>
+            <div id="mapImage" style="background-image:url('/bundles/cerambyxtasyoltreemain/images/uploads/{{ mapImageName }}');">
+            </div>
+        </article>
+        <aside id="tools" class="small-2 collapse-right column">        
+            <div id="generalInfos">
+                <p>Etalez votre carte</p>
+                <p>sur la table ci-contre :</p>
+                <p>d'un clic glissé,</p>
+                <p>déplacez votre fichier !</p>
+            </div>              
+            <!--<label class="small-12 column">Largeur des hexagones :</label><input class="small-12 column hexaWidth" type="text" placeholder="Hexagon width" name="hexawidth"/>
+            <label class="small-12 column">Hauteur des hexagones :</label><input class="small-12 column hexaHeight" type="text" placeholder="Hexagon Height" name="hexaheight"/>-->
+            <fieldset class="buttonSet">
+                <input type="checkbox" id="setGrid" class="small-12 column" name="setGrid"/><label for="setGrid">Placer la grille</label>     
+                <button id="resetGrid" class="small-12 column">Réinitialiser</button>      
+            </fieldset>
+            <div id="gridAdjustInfos">
+                <p>Pointez, glissez le coeur léger</p>
+                <p><b>ZQSD</b> la position ajuster</p>
+                <p><b>ZQSD+shift</b> pour retailler</p>
+            </div>                            
+            <!--<button id="mesureHexagon" class="button small-12 column">Mesurer un hexagone</button>-->
+
+            <fieldset class="buttonSet">
+                <legend>Affichages</legend>
+                <input type="checkbox" name="displayHexaGrid" id="displayHexaGrid" checked="checked"/><label for="displayHexaGrid">Grille</label>                               
+                <input type="checkbox" name="displayHexaNumbers" id="displayHexaNumbers" /><label for="displayHexaNumbers">Num&eacute;ros</label>
+                <input type="checkbox" name="displayHexaLabels" id="displayHexaLabels" /><label for="displayHexaLabels">Labels</label>                                    
+            </fieldset>
+
+            <fieldset id="gridColors">
+                <legend>Couleurs de la grille</legend>
+                <input type="radio" id="greenGrid" name="radio" data-classColor="#078941" /><label for="greenGrid">Sinople</label>
+                <input type="radio" id="blueGrid" name="radio" data-classColor="#2e72bb"/><label for="blueGrid">Azur</label>
+                <input type="radio" id="redGrid" name="radio" data-classColor="#c4102a"/><label for="redGrid">Gueules</label>
+                <input type="radio" id="greyGrid" name="radio" data-classColor="grey" checked="checked"/><label for="greyGrid">Sable</label>
+            </fieldset>                                    
+        </aside>        
+    </section>
+</div>
+{% endblock body %}

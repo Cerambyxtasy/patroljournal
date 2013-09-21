@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script> 
+
+        {% javascripts '@CerambyxtasyOltreeMainBundle/Resources/public/js/vendor/*.js'%}
+        <script type='text/javascript' src='{{ asset_url }}'></script>            
+        {% endjavascripts %}
+        {% javascripts '@CerambyxtasyOltreeMainBundle/Resources/public/js/hexagrid/base/*'%}
+        <script type='text/javascript' src='{{ asset_url }}'></script>            
+        {% endjavascripts %}
+        {% javascripts '@CerambyxtasyOltreeMainBundle/Resources/public/js/hexagrid/*'%}
+        <script type='text/javascript' src='{{ asset_url }}'></script>            
+        {% endjavascripts %}
+        {% javascripts '@CerambyxtasyOltreeMainBundle/Resources/public/js/partials/*'%}
+        <script type='text/javascript' src='{{ asset_url }}'></script>            
+        {% endjavascripts %}
+        {% javascripts '@CerambyxtasyOltreeMainBundle/Resources/public/js/*'%}
+        <script type='text/javascript' src='{{ asset_url }}'></script>            
+        {% endjavascripts %}
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link href='http://fonts.googleapis.com/css?family=Quintessential' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Fondamento&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        {% stylesheets 'bundles/cerambyxtasyoltreemain/css/*.css' filter='cssrewrite' %}
+        <link rel='stylesheet' href='{{asset_url}}'/>
+        {% endstylesheets %}            
+        <title>{% block title %}Oltréé ! {% endblock %}</title>
+    </head>
+    <body>
+        <script>
+        Config.imagePath = "{{ asset('bundles/cerambyxtasy/oltree/mainbundle/images/') }}";
+        </script>
+        <header class="row">
+            {%  include 'CerambyxtasyOltreeMainBundle:Partials:header.html.twig' %}            
+        </header>
+            {% block body %}
+            {% endblock %}            
+        <footer class="row"></footer>
+    </body>    
+</html>

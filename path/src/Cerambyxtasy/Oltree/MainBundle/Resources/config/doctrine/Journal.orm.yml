@@ -1,0 +1,19 @@
+Cerambyxtasy\Oltree\MainBundle\Entity\Journal:
+    type: entity
+    table: journal
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields: 
+      name:
+          type: string
+          length: 255            
+    oneToMany:
+      journal_entries:
+        targetEntity: JournalEntry
+        mappedBy: journal_entry
+    manyToOne:
+      satrap:
+        targetEntity: Satrap
+        inversedBy: journals

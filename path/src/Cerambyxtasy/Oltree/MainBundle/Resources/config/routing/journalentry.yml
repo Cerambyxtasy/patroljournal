@@ -1,0 +1,30 @@
+journalentry:
+    pattern:  /
+    defaults: { _controller: "CerambyxtasyOltreeMainBundle:JournalEntry:index" }
+
+journalentry_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CerambyxtasyOltreeMainBundle:JournalEntry:show" }
+
+journalentry_new:
+    pattern:  /new
+    defaults: { _controller: "CerambyxtasyOltreeMainBundle:JournalEntry:new" }
+
+journalentry_create:
+    pattern:  /create
+    defaults: { _controller: "CerambyxtasyOltreeMainBundle:JournalEntry:create" }
+    requirements: { _method: post }
+
+journalentry_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CerambyxtasyOltreeMainBundle:JournalEntry:edit" }
+
+journalentry_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CerambyxtasyOltreeMainBundle:JournalEntry:update" }
+    requirements: { _method: post|put }
+
+journalentry_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CerambyxtasyOltreeMainBundle:JournalEntry:delete" }
+    requirements: { _method: post|delete }

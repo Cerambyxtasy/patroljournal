@@ -1,0 +1,42 @@
+Cerambyxtasy\Oltree\MainBundle\Entity\JournalEntry:
+    type: entity
+    table: journal_entry
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields: 
+      name:
+          type: string
+          length: 255
+          nullable: true 
+      hexagon_json_infos:
+          nullable: true
+          type: text       
+      terrain:
+          type: text
+          nullable: true          
+      exploration_level:
+          type: integer
+          nullable: true 
+      patrollers:
+          nullable: true        
+          type: text
+      events:
+          nullable: true        
+          type: text
+      session_date:
+          type: date
+      game_date:
+          nullable: true        
+          type: date  
+    oneToOne:
+      hexagon:
+        targetEntity: Hexagon
+        inversedBy: journal_entry    
+        cascade: ["persist"]
+    manyToOne:
+      journal:
+        targetEntity: Journal  
+        mappedBy: journal_entries
+       

@@ -1,0 +1,10 @@
+services:
+  cerambyxtasy_user.registration_completed:
+    class: Cerambyxtasy\Oltree\MainBundle\EventListener\RegistrationSuccessListener
+    arguments: [@router]
+    tags:
+        - { name: kernel.event_subscriber }
+  cerambyxtasy.utils.managerservice:
+    class:  Cerambyxtasy\Oltree\MainBundle\Services\ManagerService
+    arguments: 
+        entityManager: "@doctrine.orm.entity_manager"

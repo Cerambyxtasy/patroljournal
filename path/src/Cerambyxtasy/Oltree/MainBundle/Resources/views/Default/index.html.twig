@@ -1,0 +1,36 @@
+{% extends 'CerambyxtasyOltreeMainBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="row">         
+       
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+    {% else %}
+    <div class="small-6 column">
+        {% render url('fos_user_security_login') %}
+    </div>
+    <div class="small-6 column">
+        {% trans_default_domain 'FOSUserBundle' %}
+        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+            {{ form_widget(form) }}
+            <div>
+                <input class="button" type="submit" value="{{ 'registration.submit'|trans }}" />
+            </div>
+        </form>
+    </div>
+    {% endif %}
+       
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for key, message in messages %}
+            <div class="flash-{{ type }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>        
+</div>
+{% endblock body %}

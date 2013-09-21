@@ -1,0 +1,13 @@
+<?php
+
+namespace Cerambyxtasy\Oltree\MainBundle\Entity;
+
+class Realm {
+    
+    protected $map;
+    protected $name;
+    protected $details;
+    protected $patrol_roadmap;       
+}
+
+?>

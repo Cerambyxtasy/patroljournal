@@ -1,0 +1,24 @@
+Cerambyxtasy\Oltree\MainBundle\Entity\Map:
+    type: entity
+    table: map
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields: 
+      name:
+          type: string
+          length: 255            
+      map_image_name:
+          type: string
+          length: 255
+          nullable: true
+    oneToMany:
+      hexagons:
+        targetEntity: Hexagon
+        mappedBy: hexagon
+        cascade: ["persist"]
+    oneToOne:
+      satrap:
+        targetEntity: Satrap
+        inversedBy: map

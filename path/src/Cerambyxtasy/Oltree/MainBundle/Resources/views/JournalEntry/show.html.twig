@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>JournalEntry</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Hexagon_json_infos</th>
+                <td>{{ entity.hexagonjsoninfos }}</td>
+            </tr>
+            <tr>
+                <th>Terrain</th>
+                <td>{{ entity.terrain }}</td>
+            </tr>
+            <tr>
+                <th>Exploration_level</th>
+                <td>{{ entity.explorationlevel }}</td>
+            </tr>
+            <tr>
+                <th>Patrollers</th>
+                <td>{{ entity.patrollers }}</td>
+            </tr>
+            <tr>
+                <th>Events</th>
+                <td>{{ entity.events }}</td>
+            </tr>
+            <tr>
+                <th>Session_date</th>
+                <td>{{ entity.sessiondate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Game_date</th>
+                <td>{{ entity.gamedate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('journalentry') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('journalentry_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

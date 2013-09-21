@@ -1,0 +1,4 @@
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+_cerambyxtasy_main:
+    resource: "@CerambyxtasyOltreeMainBundle/Resources/config/routing.yml"

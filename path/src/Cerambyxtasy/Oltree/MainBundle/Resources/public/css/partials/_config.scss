@@ -1,0 +1,19 @@
+// Colors
+$emphaseColor: #363d41;
+$bodyColor: #4a4a4a;
+$buttonColor: #4c4644;
+
+// Fonts
+$basicFont: arial, sans-serif;
+$bodyFont: 'Quintessential', cursive;
+$menuFont: VegurRegular, arial, sans-serif;
+$titleFont: TrajanProRegular, arial, sans-serif;
+$emphaseFont: MyriadProRegular, arial, sans-serif;
+
+//Media queries
+$menu-medium-threshold: emCalc(925px);
+$menu-small-threshold: emCalc(600px);
+$medium-menu: "only screen and (min-width:"#{$menu-medium-threshold}")";
+$medium-menu-max: "only screen and (max-width:"#{$menu-medium-threshold}")";
+$small-menu-min: "only screen and (min-width:"#{$menu-small-threshold}")";
+$small-menu-max: "only screen and (max-width:"#{$menu-small-threshold}")";

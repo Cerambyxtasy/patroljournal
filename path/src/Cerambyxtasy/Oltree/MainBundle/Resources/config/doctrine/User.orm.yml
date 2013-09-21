@@ -1,0 +1,12 @@
+Cerambyxtasy\Oltree\MainBundle\Entity\User:
+    type: entity
+    #besauce 'user' is a reserved SQL term
+    table: patroller
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    oneToMany:
+      satraps:
+        targetEntity: Satrap
+        mappedBy: patroller
