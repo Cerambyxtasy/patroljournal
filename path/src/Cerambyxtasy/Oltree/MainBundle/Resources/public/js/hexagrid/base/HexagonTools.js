@@ -25,7 +25,7 @@ HT.Rectangle = function(x, y, width, height) {
  */
 HT.Line = function(x1, y1, x2, y2) {
     this.X1 = x1;
-    this.Y1 = y1; 
+    this.Y1 = y1;
     this.X2 = x2;
     this.Y2 = y2;
 };
@@ -86,7 +86,8 @@ HT.Hexagon.prototype.draw = function(ctx) {
     else
         ctx.strokeStyle = "black";
 
-    ctx.lineWidth = HT.Hexagon.Static.LINEWIDTH
+    ctx.lineWidth = HT.Hexagon.Static.LINEWIDTH;
+    ctx.beginPath();
     ctx.moveTo(this.Points[0].X, this.Points[0].Y);
     for (var i = 1; i < this.Points.length; i++)
     {

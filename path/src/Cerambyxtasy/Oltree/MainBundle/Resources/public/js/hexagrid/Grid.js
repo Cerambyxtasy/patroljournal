@@ -25,7 +25,6 @@ HT.Grid = function(/*double*/ width, /*double*/ height) {
 
         var x = offset;
 
-        // + HT.Hexagon.Static.WIDTH added to canvas width to be sure to fill width
         while (x + HT.Hexagon.Static.WIDTH <= width + HT.Hexagon.Static.WIDTH)
         {
             var hexId = this.GetHexId(row, col);
