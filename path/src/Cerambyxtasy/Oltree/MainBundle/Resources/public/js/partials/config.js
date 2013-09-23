@@ -5,6 +5,7 @@ var Config = {
     //sets the hexagons proportions
     hexagonWidth: 50,
     hexagonHeight: 50,
+    lineWidth: 0.6,
     displayNum5ers: false,
     displayLabels: false,
     displayGrid: true,

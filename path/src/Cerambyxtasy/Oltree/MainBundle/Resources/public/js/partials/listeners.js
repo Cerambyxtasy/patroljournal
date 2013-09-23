@@ -184,6 +184,22 @@ var Listeners = {
         $('#hexaGrid').css('left', rectangle.topX);
         Utils.fillHexaMap($('#hexaGrid'));
     },
+    uploadJournalEntry: function(event) {
+        event.preventDefault();
+
+        var form = $("#JournalEntry > form");
+        var ajaxUrl = Routing.generate('ajax_map_grabber') + '/uploadJournalEntry';
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxUrl,
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(entryId) {
+                $('#journalEntryId', form).attr('value', entryId);
+            }
+        });
+    },
     //put the hexagonal grid in it's original state
     resetGrid: function(event) {
         Config.hexagonWidth = Config.defaultHexagonWidth;
@@ -232,14 +248,13 @@ var Listeners = {
         Utils.fillHexaMap($('#hexaGrid'));
         HT.CurrentHexagon.draw(ctx);
 
-        var flag = $(Config.selectionFlag.element);
-        var flagTop = $('#hexaGrid').position().top + HT.CurrentHexagon.MidPoint.Y - flag.height() + 15;
-        var flagLeft = $('#hexaGrid').position().left + HT.CurrentHexagon.MidPoint.X - flag.width() /3;
+        Utils.updateFlag();
 
-        flag.css('top', flagTop);
-        flag.css('left', flagLeft);
+        //managing journal entry form selectbox
+        $("#hexagonId option").attr('selected', false);
+        $("#hexagonId #" + HT.CurrentHexagon.Id).attr('selected', 'selected');
+        Utils.fillJournalEntryForm(HT.CurrentHexagon.Id);
 
-        $('#map').append(flag);
     },
     displayGrid: function(event) {
         Config.displayGrid = Config.displayGrid ? false : true;
@@ -256,6 +271,25 @@ var Listeners = {
             start: Listeners.selectableHexagon.start,
             stop: Listeners.selectableHexagon.stop
         });
+    },
+    hexalistChange: function(event) {
+        $("option:selected", this).attr('selected', 'selected');
+        var hexId = $("option:selected", this).val();
+        Utils.fillJournalEntryForm(hexId);
+        //Update selected Hexagon
+
+        var xPoint = event.offsetX;
+        var yPoint = event.offsetY;
+        HT.CurrentHexagon = HT.CurrentGrid.GetHexById(hexId);
+        HT.CurrentHexagon.selected = true;
+
+        //getting 2d context and set canvas size
+        var canvas = document.getElementById(HT.Hexagon.Static.ELEMENTNAME);
+        var ctx = canvas.getContext('2d');
+        Utils.fillHexaMap($('#hexaGrid'));
+        HT.CurrentHexagon.draw(ctx);
+
+        Utils.updateFlag();
     },
     //drag'n'drop events form map image upload
     //thanks :http://www.maximechaillou.com/simple-upload-en-drag-and-drop-avec-html5-jquery-php/

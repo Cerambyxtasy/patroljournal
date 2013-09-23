@@ -6,7 +6,8 @@
 <div id="JournalEntry" class="row">
     {{ form_start(formJournal) }}
         <label for="hexagon_id">Hexagone</label>
-        <input type="text" name="hexagonId" id="hexagonId"/>
+        <select type="text" name="hexagonId" id="hexagonId"/>
+        </select>
         <input type="hidden" name="journalEntryId" id="journalEntryId"/>
         {{ form_errors(formJournal) }}
 

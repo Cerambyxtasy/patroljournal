@@ -1,0 +1,10 @@
+<div id="JournalEntry" class="row">
+    {{ form_start(formJournal) }}
+        <label for="hexagon_id">Hexagone</label>
+        <select type="text" name="hexagonId" id="hexagonId"/>
+        </select>
+        <input type="hidden" name="journalEntryId" id="journalEntryId" value="{{journalEntryId}}"/>
+        {{ form_errors(formJournal) }}
+
+    {{ form_end(formJournal) }}        
+    </div>

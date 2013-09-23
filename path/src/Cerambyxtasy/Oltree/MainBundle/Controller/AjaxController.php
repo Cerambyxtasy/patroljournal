@@ -35,7 +35,7 @@ class AjaxController extends Controller {
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function uploadmap(Request $request) {
+    private function uploadmap(Request $request) {
         //session launch
         $session = $this->getRequest()->getSession();
 
@@ -75,7 +75,7 @@ class AjaxController extends Controller {
      * Upload a journal entry
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
-    public function uploadJournalEntry(Request $request) {
+    private function uploadJournalEntry(Request $request) {
         //session launch
         $session = $this->getRequest()->getSession();
 
@@ -105,7 +105,7 @@ class AjaxController extends Controller {
 
         //If there isn't a journal entry yet, or a new hexagon, make a new one from form datas
         if (!$journalEntry) {
-            $journalEntry = new JournalEntry();    
+            $journalEntry = new JournalEntry();
             $journalEntry = $form->getData();
         }
 
@@ -136,10 +136,10 @@ class AjaxController extends Controller {
 
                 //if it's a new hexagon, we need to create a new journal entry too !!!!
                 //TODO: FIX THE UGLY CODE REDDIT !
-                
+
                 $journalEntry = new JournalEntry();
                 $journalEntry = $form->getData();
-                $em->detach($journalEntry);                                
+                $em->detach($journalEntry);
             }
 
             //persistence of journal and map solely suffice to persist linked entities (previously cascade error)
@@ -158,6 +158,46 @@ class AjaxController extends Controller {
             return new Response(json_encode($journalEntry->getId()));
         }
         return new Response(json_encode("form error"));
+    }
+
+    private function getJournalEntry(Request $request) {
+        //session launch
+        $session = $this->getRequest()->getSession();
+
+        //get hexagon id + map id constraint
+        //if there isn't any, don't do anything !
+        //TODO: REFACTOR ! Doublon in previous method
+        $mapSession = unserialize($session->get('map'));
+        //get the session map repository
+        $map = $this->getDoctrine()
+                ->getRepository('CerambyxtasyOltreeMainBundle:Map')
+                ->findOneById($mapSession->getId());
+
+        //get hexagon by id and map
+        $hexagonRepository = $this->getDoctrine()
+                ->getRepository('CerambyxtasyOltreeMainBundle:Hexagon');
+        $hexagon = $hexagonRepository->findOneBy(array(
+            'extended_id' => $request->get('hexid'),
+            'map' => $map
+        ));
+
+        //if there isn't any hexagon registered yet : don't do anything
+        //otherwie, check for a journal entry, if fhere is one : return it
+        if (!$hexagon) {
+            return new Response(json_encode(false));
+        } else {
+            $journalEntry = $this->getDoctrine()->getRepository('CerambyxtasyOltreeMainBundle:JournalEntry')->findOneByHexagon($hexagon);
+
+            if (!$journalEntry) {
+                return new Response(json_encode(false));
+            } else {
+                //we return form view
+                $form = $this->createForm(new JournalEntryType(), $journalEntry);
+                return $this->render('CerambyxtasyOltreeMainBundle:Ajax:journalEntryForm.html.twig', 
+                        array('formJournal' => $form->createView(),
+                            'journalEntryId' => $journalEntry->getId()));
+            }
+        }
     }
 
 }

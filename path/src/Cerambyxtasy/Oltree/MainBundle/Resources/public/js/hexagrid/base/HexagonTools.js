@@ -216,11 +216,12 @@ HT.Hexagon.Orientation = {
     Rotated: 1
 };
 
+//Completely overloaded in the fillHexaMap method of utils.js
 HT.Hexagon.Static = {
     ELEMENTNAME: 'hexaMap',
     HEIGHT: 91.14378277661477,
     WIDTH: 91.14378277661477,
-    LINEWIDTH:0.7,
+    LINEWIDTH: 0.3,
     SIDE: 50.0,
     ORIENTATION: HT.Hexagon.Orientation.Normal,
     SHOWLABELS: true,
@@ -228,6 +229,6 @@ HT.Hexagon.Static = {
     GRIDCOLOR: "black",
     ISVISIBLE: true,
     DRAWSTATS: false
-};//hexagons will have 25 unit sides for now
+};
 
 

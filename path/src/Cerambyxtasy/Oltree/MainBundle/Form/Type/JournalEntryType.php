@@ -29,7 +29,7 @@ class JournalEntryType extends AbstractType {
                         '1' => 'Traversé',
                         '2' => 'Visité',
                         '3' => 'Exploré',
-                        '4' => 'Familier',
+                        '4' => 'Pacifié',
                         '5' => 'Maitrisé',                       
                         '6' => 'Sécurisé',
                     ),
