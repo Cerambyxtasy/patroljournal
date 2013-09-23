@@ -27,4 +27,12 @@ $(document).ready(function() {
         $('.buttonSet,#gridColors').buttonset();
     }
 
+    //Form operations 
+    {
+//        var editor = new wysihtml5.Editor("textarea", 
+//        {
+//            parserRules: wysihtml5ParserRules // defined in parser rules set 
+//        });
+    }
+
 });
