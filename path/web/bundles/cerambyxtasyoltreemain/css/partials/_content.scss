@@ -1,0 +1,94 @@
+#map {    
+    background : url('../images/parchment_bg.jpg') no-repeat center center #dedede;
+    min-height: 800px;
+    overflow: hidden;
+    position: relative;
+    @include background-size(100% 100%);
+    @include box-shadow(#0e0e0e emCalc(3px) emCalc(3px) emCalc(15px));       
+    
+    #mapImage {
+        position: absolute;
+        z-index:2;
+        top: 0;
+        left: 0;
+        background : no-repeat center center transparent;
+        width: 100%;
+        height: 100%;
+        @include background-size(100% 100%);
+    }
+    
+    #hexaGrid {
+        z-index:3;
+        position: absolute;
+        top: 0;
+        left:0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .hexagon_green {
+        background : url('../images/hexagon_green.png') no-repeat top left;
+        @include background-size(100% 100%);
+    }
+    .hexagon_blue {
+        background : url('../images/hexagon_blue.png') no-repeat top left;
+        @include background-size(100% 100%);
+    }
+    .hexagon_red {
+        background : url('../images/hexagon_red.png') no-repeat top left;
+        @include background-size(100% 100%);
+    }
+    .hexagon_black {
+        background : url('../images/hexagon.png') no-repeat top left;
+        @include background-size(100% 100%);
+    }
+    
+    .hexagon {     
+        position: absolute;
+        font-size:emCalc(10px);
+        padding-top: 20px;
+        text-align:center;        
+        
+        
+        .hexaNumber {
+            font-size:emCalc(14px);
+            position:absolute;
+            width:100%;
+            bottom: 3px;
+            left:0;
+        }
+        
+        &:hover {
+            background : url('../images/hexagon_hover2.png') no-repeat top left;
+            @include background-size(100% 100%);            
+        }
+    }
+    
+    .flagSelection {
+        width:50px;
+        height:60px;
+        position:absolute;
+        z-index: 10;
+        background : url('../images/pawn2.png') no-repeat 0 0 transparent;        
+    }
+}
+#gridAdjustInfos {
+    display: none;
+}
+
+#gridAdjustInfos, #generalInfos {
+    clear: both;
+    padding: emCalc(10px) 0 emCalc(20px) 0;    
+    p {
+        font-size:emCalc(20px);
+        line-height:emCalc(20px);
+        
+        b {
+            font-weight: 900;
+        }
+    }
+}
+
+#tools {
+    text-align: center;
+}
