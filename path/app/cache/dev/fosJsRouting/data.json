@@ -1,0 +1,1 @@
+{"base_url":"\/app_dev.php","routes":{"ajax_map_grabber":{"tokens":[["variable","\/","[^\/]++","action"],["text","\/ajax"]],"defaults":[],"requirements":[],"hosttokens":[]}},"prefix":"","host":"oltree.dev","scheme":"http"}

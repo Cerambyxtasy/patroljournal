@@ -1,0 +1,69 @@
+// Global styles (common to all the pages)
+
+html body {
+    font-family:$bodyFont;
+    font-size: 15px;    
+    height: 100%;
+    min-height: 930px;
+    width: 100%;    
+    margin: 0;    
+    padding: 0;
+    overflow-x: hidden;
+    position: absolute;
+}
+
+h1,h2,h3 {
+    font-family: 'Fondamento', cursive;
+}
+
+body > header {
+    background: dimgrey;
+    height: 5%;
+    width:100%;    
+}
+
+nav {
+    height:5%;
+}
+
+fieldset legend {
+    font-size: emCalc(25px);
+    padding: emCalc(10px) 0;
+}
+
+#main {
+    height:87%;
+    width:100%;
+}
+
+footer {
+    background: #000;
+    width: 100%;
+    height: 3%;
+}
+
+.selectionRectangle {
+    position:absolute;
+    display:none;
+    top:0;
+    left:0;
+    border: solid 1px #BA9B54;
+    @include single-box-shadow; 
+}
+.mesureRectangle {
+    position:absolute;
+    display:none;
+    top:0;
+    left:0;
+    border: solid 1px green;
+}
+
+#tools {
+    font-size:emCalc(12px);
+}
+
+#gridColors, .buttonSet{
+    .ui-button {
+        width:100%;
+    }
+}

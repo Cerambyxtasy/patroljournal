@@ -1,0 +1,23 @@
+#fos_user_registration_form {
+    div {
+        label {
+            display: inline-block;
+            width: 35%;
+        }
+        input {
+            display: inline-block;
+            width: 65%;
+        }
+    }
+}
+
+#fos_user_login_form {
+    label {
+        display: inline-block;
+        width: 28%;
+    }
+    input[type=text],input[type=password] {
+        display: inline-block;
+        width: 65%;
+    }    
+}

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0b55279c2b50e24210bf69cdca6ea2dc",
+    "hash": "aa2526d7de60ff1933ad7d32c7db77d0",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -665,12 +665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "85ef11b6d68e640d306574b87302c9f335b80ef2"
+                "reference": "b4840d8b3293386dba685d91169559eb20f2d767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/85ef11b6d68e640d306574b87302c9f335b80ef2",
-                "reference": "85ef11b6d68e640d306574b87302c9f335b80ef2",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/b4840d8b3293386dba685d91169559eb20f2d767",
+                "reference": "b4840d8b3293386dba685d91169559eb20f2d767",
                 "shasum": ""
             },
             "require": {
@@ -701,7 +701,7 @@
                     "FOS\\UserBundle": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -725,7 +725,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-09-19 10:03:47"
+            "time": "2013-09-23 12:09:51"
         },
         {
             "name": "incenteev/composer-parameter-handler",
