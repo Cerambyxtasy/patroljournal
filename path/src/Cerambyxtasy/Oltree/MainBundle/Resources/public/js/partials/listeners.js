@@ -18,7 +18,7 @@ var Listeners = {
             }
         }
     },
-    //use to draw a rectangle around an hexagon, to take it's measures
+    //used to draw a rectangle around an hexagon, to take it's measures
     selectableHexagon: {
         start: function(event, ui) {
             var mesureRectangle = Config.mesureRectangle;
@@ -69,79 +69,19 @@ var Listeners = {
     selectableHexagonmap: {
         shiftPressed: false,
         start: function(event, ui) {
+            Config.isDraggingGrid = true;
             var selectionRectangle = Config.selectionRectangle;
             selectionRectangle.topX = event.pageX - $('#map').offset().left;
             selectionRectangle.topY = event.pageY - $('#map').offset().top;
             //we suspend costly events
             $('.hexaWidth, .hexaHeight').unbind('change paste');
-            //Handle keyboard events
-            $(document).on('keyup', function(event) {
-                switch (event.keyCode) {
-//key shift
-                    case 16:
-                        Listeners.selectableHexagonmap.shiftPressed = false;
-                        break;
-                }
-            });
-            $(document).on('keydown', function(event) {
-//with shift, change hexagon size
-                if (Listeners.selectableHexagonmap.shiftPressed) {
-                    switch (event.keyCode) {
-//key q
-                        case 81:
-                            Config.hexagonWidth -= 0.1;
-                            break;
-                            //key z
-                        case 90:
-                            Config.hexagonHeight -= 0.1;
-                            break;
-                            //key d
-                        case 68:
-                            Config.hexagonWidth += 0.1;
-                            break;
-                            //key s
-                        case 83:
-                            Config.hexagonHeight += 0.1;
-                            break;
-                    }
-//update dedicated inputs and map
-                    $('.hexaWidth').val(Config.hexagonWidth);
-                    $('.hexaHeight').val(Config.hexagonHeight);
-                    //without shift, move hexagon grid
-                } else {
-                    switch (event.keyCode) {
-//key q
-                        case 81:
-                            selectionRectangle.topX -= 1;
-                            break;
-                            //key z
-                        case 90:
-                            selectionRectangle.topY -= 1;
-                            break;
-                            //key d
-                        case 68:
-                            selectionRectangle.topX += 1;
-                            break;
-                            //key s
-                        case 83:
-                            selectionRectangle.topY += 1;
-                            break;
-                            //key shift
-                        case 16:
-                            Listeners.selectableHexagonmap.shiftPressed = true;
-                            break;
-                    }
-                }
-                Listeners.updateGridSelection(selectionRectangle);
-            });
-            $('#map').append($(selectionRectangle.element));
-            $('.selectionRectangle').show();
             $('#map').bind('mousemove', Listeners.moveGrid);
         },
         stop: function(event, ui) {
+            Config.isDraggingGrid = false;
+            Utils.hexagonListUpdate();
             //remove key bindings
             $('#map').unbind('mousemove');
-            $(document).unbind('keydown,keyup');
             //we reinstall removed bindings
             $('.hexaWidth, .hexaHeight').on('change paste', Listeners.hexagonSize);
             $('.selectionRectangle').width(0);
@@ -205,10 +145,16 @@ var Listeners = {
     },
     //put the hexagonal grid in it's original state
     resetGrid: function(event) {
+
+        $('#hexaGrid').css({'width': '100%', 'height': '100%', 'top': '0', 'left': '0'});
         Config.hexagonWidth = Config.defaultHexagonWidth;
         Config.hexagonHeight = Config.defaultHexagonHeight;
-        $('#hexaGrid').css({'width': '100%', 'height': '100%', 'top': '0', 'left': '0'});
+        Config.selectionRectangle.topX = 0;
+        Config.selectionRectangle.topY = 0;
+        Config.selectionRectangle.width = $('#hexaGrid').width();
+        Config.selectionRectangle.height = $('#hexaGrid').height();
         Utils.fillHexaMap($('#hexaGrid'));
+        $('.flagSelection').hide();
     },
     //display numbers toggling 
     showNumbers: function(event) {
@@ -225,7 +171,14 @@ var Listeners = {
     //launch grid drag'n'drop
     setGrid: function(event) {
 
+        //all init operations
+        Config.selectionRectangle.topX = 0;
+        Config.selectionRectangle.topY = 0;
+        Config.selectionRectangle.width = $('#hexaGrid').width();
+        Config.selectionRectangle.height = $('#hexaGrid').height();
         Config.isGridDrawing = Config.isGridDrawing ? false : true;
+        $('#map').append($(Config.selectionRectangle.element));
+        $('.selectionRectangle').show();
 
         if (Config.isGridDrawing) {
             $('#gridAdjustInfos').fadeIn();
@@ -234,7 +187,73 @@ var Listeners = {
                 stop: Listeners.selectableHexagonmap.stop,
                 filter: 'li'
             });
+            $('.flagSelection').hide();
+
+
+            //Handle keyboard events
+            $(document).on('keyup', function(event) {
+                var selectionRectangle = Config.selectionRectangle;
+                switch (event.keyCode) {
+                    //key shift
+                    case 16:
+                        Listeners.selectableHexagonmap.shiftPressed = false;
+                        break;
+                }
+            });
+            $(document).on('keydown', function(event) {
+                var selectionRectangle = Config.selectionRectangle;
+                //with shift, change hexagon size
+                if (Listeners.selectableHexagonmap.shiftPressed) {
+                    switch (event.keyCode) {
+                        //key q
+                        case 81:
+                            Config.hexagonWidth -= 0.1;
+                            break;
+                            //key z
+                        case 90:
+                            Config.hexagonHeight -= 0.1;
+                            break;
+                            //key d
+                        case 68:
+                            Config.hexagonWidth += 0.1;
+                            break;
+                            //key s
+                        case 83:
+                            Config.hexagonHeight += 0.1;
+                            break;
+                    }
+                    //update dedicated inputs and map
+//                    $('.hexaWidth').val(Config.hexagonWidth);
+//                    $('.hexaHeight').val(Config.hexagonHeight);
+                    //without shift, move hexagon grid
+                } else {
+                    switch (event.keyCode) {
+                        //key q
+                        case 81:
+                            selectionRectangle.topX -= 1;
+                            break;
+                            //key z
+                        case 90:
+                            selectionRectangle.topY -= 1;
+                            break;
+                            //key d
+                        case 68:
+                            selectionRectangle.topX += 1;
+                            break;
+                            //key s
+                        case 83:
+                            selectionRectangle.topY += 1;
+                            break;
+                            //key shift
+                        case 16:
+                            Listeners.selectableHexagonmap.shiftPressed = true;
+                            break;
+                    }
+                }
+                Listeners.updateGridSelection(Config.selectionRectangle);
+            });
         } else {
+            $(document).unbind('keydown keyup');
             $('#gridAdjustInfos').fadeOut();
             $('#map').selectable("destroy");
         }

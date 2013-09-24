@@ -8,8 +8,9 @@ var Config = {
     lineWidth: 0.6,
     displayNum5ers: false,
     displayLabels: false,
-    displayGrid: true,
+    displayGrid: true,   
     isGridDrawing: false,
+    isDraggingGrid:false,
     //0 normal, 1 pointy hat
     orientation: 0,
     currentGridColor: 'grey',

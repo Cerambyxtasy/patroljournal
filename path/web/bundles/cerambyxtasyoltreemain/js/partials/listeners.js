@@ -187,6 +187,9 @@ var Listeners = {
     uploadJournalEntry: function(event) {
         event.preventDefault();
 
+        //we ensure that tiny editor wysiwyg is updated
+        instance.post();
+
         var form = $("#JournalEntry > form");
         var ajaxUrl = Routing.generate('ajax_map_grabber') + '/uploadJournalEntry';
 

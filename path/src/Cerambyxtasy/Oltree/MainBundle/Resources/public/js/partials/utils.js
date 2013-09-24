@@ -68,17 +68,23 @@ var Utils = {
 
         HT.Hexagon.Static.SIDE = getSide();
         HT.CurrentGrid = drawHexGrid();
+        
+        Utils.hexagonListUpdate();
+    },
+    //update the selectbox list of selectable hexagons
+    hexagonListUpdate: function() {
         //fill hexagons select box
-        var hexes = HT.CurrentGrid.Hexes;
-        $("#hexagonId option").remove();
-        for (var i = 0; i < hexes.length; i++) {
-            var hexId = hexes[i].Id + ' (' + hexes[i].PathCoOrdX + ' ' + hexes[i].PathCoOrdY + ')';
-            var option = "<option id='" + hexes[i].Id + "' value='" + hexes[i].Id + "'>" + hexId + "</option>";
-            $("#hexagonId").append(option);
+        if (!Config.isDraggingGrid) {
+            var hexes = HT.CurrentGrid.Hexes;
+            $("#hexagonId option").remove();
+            for (var i = 0; i < hexes.length; i++) {
+                var hexId = hexes[i].Id + ' (' + hexes[i].PathCoOrdX + ' ' + hexes[i].PathCoOrdY + ')';
+                var option = "<option id='" + hexes[i].Id + "' value='" + hexes[i].Id + "'>" + hexId + "</option>";
+                $("#hexagonId").append(option);
+            }
         }
     },
-    mapHexaListeners
-            : function(hexaGrid) {
+    mapHexaListeners: function(hexaGrid) {
         $(hexaGrid).on('click', function(event) {
 
         });

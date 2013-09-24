@@ -216,18 +216,33 @@ class __TwigTemplate_ac2abbbfbf4833c3ea6b24cceb0b6137 extends Twig_Template
         unset($context["asset_url"]);
         // line 35
         echo "            
-        <title>";
+        ";
         // line 36
+        if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
+            // asset "9884273_0"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_9884273_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/9884273_part_1_tinyeditor_1.css");
+            // line 37
+            echo "        <link rel='stylesheet' href='";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "'/>
+        ";
+        } else {
+            // asset "9884273"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_9884273") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/9884273.css");
+            echo "        <link rel='stylesheet' href='";
+            echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
+            echo "'/>
+        ";
+        }
+        unset($context["asset_url"]);
+        // line 38
+        echo "            
+        <title>";
+        // line 39
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
     </head>
     <body>
-        <script>
-        Config.imagePath = \"";
-        // line 40
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/cerambyxtasy/oltree/mainbundle/images/"), "html", null, true);
-        echo "\";
-        </script>
         <header class=\"row\">
             ";
         // line 43
@@ -244,7 +259,7 @@ class __TwigTemplate_ac2abbbfbf4833c3ea6b24cceb0b6137 extends Twig_Template
 </html>";
     }
 
-    // line 36
+    // line 39
     public function block_title($context, array $blocks = array())
     {
         echo "Oltréé ! ";
@@ -269,6 +284,6 @@ class __TwigTemplate_ac2abbbfbf4833c3ea6b24cceb0b6137 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  257 => 46,  254 => 45,  248 => 36,  241 => 46,  239 => 45,  234 => 43,  228 => 40,  221 => 36,  218 => 35,  186 => 34,  182 => 33,  176 => 29,  162 => 27,  157 => 26,  125 => 24,  120 => 23,  100 => 21,  95 => 20,  81 => 18,  76 => 17,  62 => 15,  57 => 14,  43 => 12,  39 => 11,  34 => 9,  30 => 8,  21 => 1,);
+        return array (  272 => 46,  269 => 45,  263 => 39,  256 => 46,  254 => 45,  249 => 43,  242 => 39,  239 => 38,  225 => 37,  221 => 36,  218 => 35,  186 => 34,  182 => 33,  176 => 29,  162 => 27,  157 => 26,  125 => 24,  120 => 23,  100 => 21,  95 => 20,  81 => 18,  76 => 17,  62 => 15,  57 => 14,  43 => 12,  39 => 11,  34 => 9,  30 => 8,  21 => 1,);
     }
 }

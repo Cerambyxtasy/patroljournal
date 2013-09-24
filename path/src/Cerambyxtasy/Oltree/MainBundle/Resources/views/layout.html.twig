@@ -32,13 +32,10 @@
         <link href='http://fonts.googleapis.com/css?family=Fondamento&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         {% stylesheets 'bundles/cerambyxtasyoltreemain/css/*.css' filter='cssrewrite' %}
         <link rel='stylesheet' href='{{asset_url}}'/>
-        {% endstylesheets %}            
+        {% endstylesheets %}
         <title>{% block title %}Oltréé ! {% endblock %}</title>
     </head>
     <body>
-        <script>
-        Config.imagePath = "{{ asset('bundles/cerambyxtasy/oltree/mainbundle/images/') }}";
-        </script>
         <header class="row">
             {%  include 'CerambyxtasyOltreeMainBundle:Partials:header.html.twig' %}            
         </header>
