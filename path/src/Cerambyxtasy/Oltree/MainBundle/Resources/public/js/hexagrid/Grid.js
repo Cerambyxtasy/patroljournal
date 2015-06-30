@@ -1,4 +1,4 @@
-/**
+/** 
  * A Grid is the model of the playfield containing hexes
  * @constructor
  */
